@@ -1,0 +1,24 @@
+<h1>My tasks</h1>
+
+<div class="d-flex flex-column">
+<% @tasks.each do |task| %>
+  <div class="d-flex flex-column m-2">
+
+    <div class="d-flex flex-row justify-content-center align-content-center align-items-center m-2 border btn position-relative">
+      <p class="m-0 me-2"><b> <%= task.title %></b></p>
+      <p class="m-0 me-2"><%= task.details %></p>
+      <% if(task.completed == true) %>
+        <i class="fa-solid fa-square-check"></i>
+      <% else %>
+        <i class="fa-regular fa-square"></i>
+      <% end %>
+   </div>
+
+    <%= link_to "Edit", task_path(task), class: "btn btn-primary mb-2" %>
+    <%= link_to "-DELETE-", task_path(task), data: {turbo_method: :delete, turbo_confirm: "Are you sure?"}, class: "btn btn-outline-danger" %>
+
+  </div>
+<% end %>
+</div>
+
+<p><b><%= link_to "Create New", new_path %></b></p>
